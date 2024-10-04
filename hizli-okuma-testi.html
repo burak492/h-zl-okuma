@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hızlı Okuma Testi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hızlı Okuma Testine Hoş Geldiniz!</h1>
+    <button id="startButton">Okumaya Başla</button>
+    <div id="textContainer" style="display:none;">
+        <p>
+            Çok eski zamanlarda yaşlı ve fakir bir ayakkabı ustasının elinde sadece bir çift ayakkabı yapabilecek ayakkabı derisi kalmış. Akşam üstü, sabah dikeceği elinde son kalan ayakkabı dersini kesti, yatmadan önce duasını okudu ve derin bir uykuya daldı. Ertesi sabah uyanıp çalışmak için masasının başına oturduğu zaman akşam kestiği derileri dikilmiş ve bitirilmiş olarak masasının üzerinde buldu. Gariban ayakkabıcı bu duruma çok şaşırdı ve ne diyeceğini bilemedi. Ayakkabıları eline aldı iyice inceledi. Ayakkabılar o kadar dikkatle dikilmişti ki en ufacık bir iplik parçası bile görünmüyordu. Çok geçmeden ayakkabıcının dükkânına bir alıcı geldi. Ayakkabıcının verdiği ayakkabılardan o kadar memnun kaldı ki, onun istediğinden çok daha fazla para ödedi. Ayakkabıcı kazandığı bu para ile iki çift ayakkabı yapabilecek deri satın aldı. Ayakkabıcı aldığı deriden akşamleyin iki çift ayakkabı kalıbı kesti, sabahleyin dikmek için hazır etti ve duasını edip yatmaya gitti. Ertesi sabah kalktığı zaman yine iki çift ayakkabı dikilmiş bitmiş olarak masasının üzerinde hazır buldu. Dükkâna da bol bol müşteri gelmeye başladı. Gelen müşteriler ayakkabıcının istediğinden çok daha fazla para vererek ayakkabıları satın alıyorlardı. Bu sefer ayakkabıcının dört çift ayakkabı derisi alacak parası olmuştu. Ertesi sabah erkenden uyandığında gene 4 çift ayakkabının masanın üzerinde hazır buldu. Bu vaziyet böylece devam edip gitti.
+        </p>
+    </div>
+    <button id="stopButton" style="display:none;">Okumayı Bitir</button>
+    <div id="result" style="display:none;"></div>
+
+    <script>
+        let startTime;
+        let endTime;
+        let timer;
+        let wordCount = 0;
+        const textContainer = document.getElementById("textContainer");
+        const resultDiv = document.getElementById("result");
+
+        document.getElementById("startButton").addEventListener("click", function() {
+            textContainer.style.display = "block";
+            document.getElementById("stopButton").style.display = "block";
+            startTime = new Date();
+            wordCount = textContainer.innerText.split(" ").length; // Metindeki kelime sayısını hesapla
+        });
+
+        document.getElementById("stopButton").addEventListener("click", function() {
+            endTime = new Date();
+            const timeDiff = (endTime - startTime) / 1000 / 60; // Dakika cinsinden farkı hesapla
+            const wordsPerMinute = Math.round(wordCount / timeDiff);
+            resultDiv.innerText = "Dakikada " + wordsPerMinute + " kelime okudunuz.";
+            resultDiv.style.display = "block";
+            textContainer.style.display = "none";
+            this.style.display = "none";
+        });
+    </script>
+</body>
+</html>
